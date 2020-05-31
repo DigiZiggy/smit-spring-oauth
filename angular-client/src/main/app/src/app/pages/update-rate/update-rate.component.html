@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="">
+    <form (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="rate">Exchange rate</label>
+        <input type="number" [min]="0" step="any" pattern="^[0-9]\d*(?:\.\d{0,25})?$" class="form-control"
+               id="rate" required #rate="ngModel" [(ngModel)]="exchangeRate.rate" name="rate">
+      </div>
+      <div [hidden]="!rate.errors" class="alert alert-danger">Positive numeric rate amount is required</div>
+
+      <div class="form-group">
+        <label for="currency">Currency</label>
+        <select [(ngModel)]="exchangeRate.currency" class="form-control" required name="currency" id="currency">
+          <option *ngFor="let type of Currency.values();">
+            {{type}}
+          </option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+</div>
